@@ -60,8 +60,7 @@
                     <th>Edad</th>
                     <th>Sexo</th>
                     <th>Área</th>
-                    <th>Situación</th>
-                    <th>Acciones</th>
+                    <th>Situación</th>                    
                 </tr>
             </thead>
             <tbody>              
