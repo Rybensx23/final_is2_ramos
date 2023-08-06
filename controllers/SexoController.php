@@ -3,22 +3,22 @@
 namespace Controllers;
 
 use Exception;
-use Model\Empleado;
+use Model\Sexo;
 use MVC\Router;
 
-class EmpleadoController{
+class SexoController{
     public static function index(Router $router){
-        $empleados = Empleado::all();        
-        $router->render('empleados/index', [
-            'empleados' => $empleados,
+        $sexos = Sexo::all();        
+        $router->render('sexos/index', [
+            'sexos' => $sexos,
         ]);
 
     }
 
     public static function guardarAPI(){
         try {
-            $empleado = new Empleado($_POST);
-            $resultado = $empleado->crear();
+            $sexo = new Sexo($_POST);
+            $resultado = $sexo->crear();
 
             if($resultado['resultado'] == 1){
                 echo json_encode([
@@ -43,8 +43,8 @@ class EmpleadoController{
 
     public static function modificarAPI(){
         try {
-            $empleado = new Empleado($_POST);
-            $resultado = $empleado->actualizar();
+            $sexo = new Sexo($_POST);
+            $resultado = $sexo->actualizar();
 
             if($resultado['resultado'] == 1){
                 echo json_encode([
@@ -70,7 +70,7 @@ class EmpleadoController{
     public static function eliminarAPI(){
         try {
             $sex_cod = $_POST['sex_cod'];
-            $empleado = Empleado::find($sex_cod);
+            $sexo = Sexo::find($sex_cod);
             $sexo->sexo_situacion = 0;
             $resultado = $sexo->actualizar();
 

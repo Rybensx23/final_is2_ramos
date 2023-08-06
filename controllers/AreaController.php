@@ -3,22 +3,22 @@
 namespace Controllers;
 
 use Exception;
-use Model\Empleado;
+use Model\Area;
 use MVC\Router;
 
-class EmpleadoController{
+class AreaController{
     public static function index(Router $router){
-        $empleados = Empleado::all();        
-        $router->render('empleados/index', [
-            'empleados' => $empleados,
+        $areas = Area::all();        
+        $router->render('areas/index', [
+            'areas' => $areas,
         ]);
 
     }
 
     public static function guardarAPI(){
         try {
-            $empleado = new Empleado($_POST);
-            $resultado = $empleado->crear();
+            $area = new Area($_POST);
+            $resultado = $area->crear();
 
             if($resultado['resultado'] == 1){
                 echo json_encode([
@@ -43,8 +43,8 @@ class EmpleadoController{
 
     public static function modificarAPI(){
         try {
-            $empleado = new Empleado($_POST);
-            $resultado = $empleado->actualizar();
+            $area = new Area($_POST);
+            $resultado = $area->actualizar();
 
             if($resultado['resultado'] == 1){
                 echo json_encode([
@@ -69,10 +69,10 @@ class EmpleadoController{
 
     public static function eliminarAPI(){
         try {
-            $sex_cod = $_POST['sex_cod'];
-            $empleado = Empleado::find($sex_cod);
-            $sexo->sexo_situacion = 0;
-            $resultado = $sexo->actualizar();
+            $area_cod = $_POST['area_cod'];
+            $area = Area::find($area_cod);
+            $area->area_situacion = 0;
+            $resultado = $area->actualizar();
 
             if($resultado['resultado'] == 1){
                 echo json_encode([
@@ -96,18 +96,18 @@ class EmpleadoController{
     }
 
     public static function buscarAPI(){
-        $sex_descr = $_GET['sex_descr'];
+        $area_nom = $_GET['area_nom'];
 
-        $sql = "SELECT * FROM sexos where sex_situacion = 1 ";
-        if($sex_descr != '') {
-            $sql.= " and sex_descr like '%$sex_descr%' ";
+        $sql = "SELECT * FROM areas where area_situacion = 1 ";
+        if($area_nom != '') {
+            $sql.= " and area_nom like '%$area_nom%' ";
         }
         
         try {
             
-            $sexos = Sexo::fetchArray($sql);
+            $areas = Area::fetchArray($sql);
     
-            echo json_encode($sexos);
+            echo json_encode($areas);
         } catch (Exception $e) {
             echo json_encode([
                 'detalle' => $e->getMessage(),
