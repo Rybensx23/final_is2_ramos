@@ -59,7 +59,7 @@
         </div>
     <div class="row mb-3">
             <div class="col">
-                <button type="submit" form="formularioarea" id="btnGuardar" data-saludo= "hola" data-saludo2="hola2" class="btn btn-primary w-100">Guardar</button>
+                <button type="submit" form="formularioEmpleado" id="btnGuardar" data-saludo= "hola" data-saludo2="hola2" class="btn btn-primary w-100">Guardar</button>
             </div>
             <div class="col">
                 <button type="button" id="btnModificar" class="btn btn-warning w-100">Modificar</button>
@@ -75,9 +75,9 @@
 </form>
 </div>
 
-<div class="row justify-content-center">
+<div class="row justify-content-center" id="divTabla">
     <div class="col-lg-10">
-        <table class="table">
+        <table id="tablaEmpleados" class="table">
             <thead>
                 <tr>
                     <th>No. </th>

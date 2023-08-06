@@ -38,8 +38,8 @@ const guardar = async (evento) => {
         const respuesta = await fetch(url, config)
         const data = await respuesta.json();
 
-        console.log(data);
-         return
+        // console.log(data);
+        //  return
         
         const {codigo, mensaje,detalle} = data;
         let icon = 'info'
@@ -119,15 +119,15 @@ const buscar = async () => {
                 td1.innerText = contador;
                 td2.innerText = empleado.emp_nom
                 td3.innerText = empleado.emp_dpi
-                td3.innerText = empleado.emp_puesto_cod
-                td3.innerText = empleado.emp_edad
-                td3.innerText = empleado.emp_sex_cod
-                td3.innerText = empleado.emp_area_cod
+                td4.innerText = empleado.emp_puesto_cod
+                td5.innerText = empleado.emp_edad
+                td6.innerText = empleado.emp_sex_cod
+                td7.innerText = empleado.emp_area_cod
                 
                 
                 // ESTRUCTURANDO DOM
-                td4.appendChild(buttonModificar)
-                td5.appendChild(buttonEliminar)
+                td8.appendChild(buttonModificar)
+                td9.appendChild(buttonEliminar)
                 tr.appendChild(td1)
                 tr.appendChild(td2)
                 tr.appendChild(td3)
@@ -158,13 +158,13 @@ const buscar = async () => {
 }
 
 const colocarDatos = (datos) => {
-    formulario.emp_nom.value = datos.emp_nom
-    formulario.pue_suel.value = datos.pue_suel
-    formulario.emp_cod.value = datos.emp_dpi
-    formulario.emp_cod.value = datos.emp_puesto_cod
-    formulario.emp_cod.value = datos.emp_sex_cod
-    formulario.emp_cod.value = datos.emp_area_cod
-    formulario.emp_cod.value = datos.emp_cod
+    formulario.emp_nom.value = datos.emp_nom;
+    formulario.emp_dpi.value = datos.emp_dpi;
+    formulario.emp_puesto_cod.value = datos.emp_puesto_cod;
+    formulario.emp_edad.value = datos.emp_edad;
+    formulario.emp_sex_cod.value = datos.emp_sex_cod;
+    formulario.emp_area_cod.value = datos.emp_area_cod;
+    formulario.emp_cod.value = datos.emp_cod;
 
     btnGuardar.disabled = true
     btnGuardar.parentElement.style.display = 'none'
