@@ -3,22 +3,22 @@
 namespace Controllers;
 
 use Exception;
-use Model\Sexo;
+use Model\Puesto;
 use MVC\Router;
 
-class SexoController{
+class PuestoController{
     public static function index(Router $router){
-        $sexos = Sexo::all();        
-        $router->render('sexos/index', [
-            'sexos' => $sexos,
+        $Puestos = Puesto::all();        
+        $router->render('puestos/index', [
+            'puestos' => $puestos,
         ]);
 
     }
 
     public static function guardarAPI(){
         try {
-            $sexo = new Sexo($_POST);
-            $resultado = $sexo->crear();
+            $puesto = new Puesto($_POST);
+            $resultado = $puesto->crear();
 
             if($resultado['resultado'] == 1){
                 echo json_encode([
@@ -43,8 +43,8 @@ class SexoController{
 
     public static function modificarAPI(){
         try {
-            $sexo = new Sexo($_POST);
-            $resultado = $sexo->actualizar();
+            $puesto = new Puesto($_POST);
+            $resultado = $puesto->actualizar();
 
             if($resultado['resultado'] == 1){
                 echo json_encode([
@@ -69,10 +69,10 @@ class SexoController{
 
     public static function eliminarAPI(){
         try {
-            $sex_cod = $_POST['sex_cod'];
-            $sexo = Sexo::find($sex_cod);
-            $sexo->sex_situacion = 0;
-            $resultado = $sexo->actualizar();
+            $pue_cod = $_POST['pue_cod'];
+            $puesto = Puesto::find($pue_cod);
+            $puesto->pue_situacion = 0;
+            $resultado = $puesto->actualizar();
 
             if($resultado['resultado'] == 1){
                 echo json_encode([
@@ -96,18 +96,22 @@ class SexoController{
     }
 
     public static function buscarAPI(){
-        $sex_descr = $_GET['sex_descr'];
+        $pue_descr = $_GET['pue_descr'];
+        $pue_suel = $_GET['pue_suel'];
 
-        $sql = "SELECT * FROM sexos where sex_situacion = 1 ";
-        if($sex_descr != '') {
-            $sql.= " and sex_descr like '%$sex_descr%' ";
+        $sql = "SELECT * FROM puestos where pue_situacion = 1 ";
+        if($pue_descr != '') {
+            $sql.= " and pue_descr like '%$pue_descr%' ";
+        }
+        if($pue_suel != '') {
+            $sql.= " and pue_suel like '%$pue_suel%' ";
         }
         
         try {
             
-            $sexos = Sexo::fetchArray($sql);
+            $puestos = Puesto::fetchArray($sql);
     
-            echo json_encode($sexos);
+            echo json_encode($puestos);
         } catch (Exception $e) {
             echo json_encode([
                 'detalle' => $e->getMessage(),

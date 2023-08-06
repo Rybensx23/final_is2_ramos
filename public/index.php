@@ -6,6 +6,7 @@ use Controllers\AppController;
 use Controllers\EmpleadoController;
 use Controllers\SexoController;
 use Controllers\AreaController;
+use Controllers\PuestoController;
 $router = new Router();
 $router->setBaseURL('/' . $_ENV['APP_NAME']);
 
@@ -27,6 +28,12 @@ $router->post('/API/areas/guardar', [AreaController::class, 'guardarAPI']);
 $router->get('/API/areas/buscar', [AreaController::class, 'buscarAPI']);
 $router->post('/API/areas/modificar', [AreaController::class, 'modificarAPI']);
 $router->post('/API/areas/eliminar', [AreaController::class, 'eliminarAPI']);
+
+$router->get('/puestos', [PuestoController::class, 'index']);
+$router->post('/API/puestos/guardar', [PuestoController::class, 'guardarAPI']);
+$router->get('/API/puestos/buscar', [PuestoController::class, 'buscarAPI']);
+$router->post('/API/puestos/modificar', [PuestoController::class, 'modificarAPI']);
+$router->post('/API/puestos/eliminar', [PuestoController::class, 'eliminarAPI']);
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
 $router->comprobarRutas();
