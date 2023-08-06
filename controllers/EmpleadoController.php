@@ -69,10 +69,10 @@ class EmpleadoController{
 
     public static function eliminarAPI(){
         try {
-            $sex_cod = $_POST['sex_cod'];
-            $empleado = Empleado::find($sex_cod);
-            $sexo->sexo_situacion = 0;
-            $resultado = $sexo->actualizar();
+            $emp_cod = $_POST['emp_cod'];
+            $empleado = Empleado::find($emp_cod);
+            $empleado->emp_situacion = 0;
+            $resultado = $empleado->actualizar();
 
             if($resultado['resultado'] == 1){
                 echo json_encode([
@@ -96,18 +96,18 @@ class EmpleadoController{
     }
 
     public static function buscarAPI(){
-        $sex_descr = $_GET['sex_descr'];
+        $emp_nom = $_GET['emp_nom'];
 
-        $sql = "SELECT * FROM sexos where sex_situacion = 1 ";
-        if($sex_descr != '') {
-            $sql.= " and sex_descr like '%$sex_descr%' ";
+        $sql = "SELECT * FROM empleados where emp_situacion = 1 ";
+        if($emp_nom != '') {
+            $sql.= " and emp_nom like '%$emp_nom%' ";
         }
         
         try {
             
-            $sexos = Sexo::fetchArray($sql);
+            $empleados = Empleado::fetchArray($sql);
     
-            echo json_encode($sexos);
+            echo json_encode($empleados);
         } catch (Exception $e) {
             echo json_encode([
                 'detalle' => $e->getMessage(),

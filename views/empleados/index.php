@@ -53,7 +53,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Código</th>
+                    <th>No. </th>
                     <th>Nombre</th>
                     <th>DPI</th>
                     <th>Puesto</th>

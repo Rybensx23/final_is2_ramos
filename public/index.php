@@ -11,6 +11,7 @@ $router = new Router();
 $router->setBaseURL('/' . $_ENV['APP_NAME']);
 
 $router->get('/', [AppController::class,'index']);
+
 $router->get('/empleados', [EmpleadoController::class,'index']);
 $router->post('/API/empleados/guardar', [EmpleadoController::class,'guardarAPI']);
 $router->get('/API/empleados/buscar', [EmpleadoController::class,'buscarAPI']);

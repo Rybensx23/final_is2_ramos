@@ -72,8 +72,8 @@ const guardar = async (evento) => {
 const buscar = async () => {
 
     let emp_nom = formulario.emp_nom.value;
-    let producto_precio = formulario.producto_precio.value;
-    const url = `/final_is2_ramos/API/empleados/buscar?emp_nom=${emp_nom}&producto_precio=${producto_precio}`;
+    let pue_suel = formulario.pue_suel.value;
+    const url = `/final_is2_ramos/API/empleados/buscar?emp_nom=${emp_nom}&pue_suel=${pue_suel}`;
     const config = {
         method : 'GET'
     }
@@ -82,13 +82,13 @@ const buscar = async () => {
         const respuesta = await fetch(url, config)
         const data = await respuesta.json();
         
-        tablaProductos.tBodies[0].innerHTML = ''
+        tablaEmpleados.tBodies[0].innerHTML = ''
         const fragment = document.createDocumentFragment();
         console.log(data);
         // return;
         if(data.length > 0){
             let contador = 1;
-            data.forEach( producto => {
+            data.forEach( empleado => {
                 // CREAMOS ELEMENTOS
                 const tr = document.createElement('tr');
                 const td1 = document.createElement('td')
@@ -105,12 +105,12 @@ const buscar = async () => {
                 buttonModificar.textContent = 'Modificar'
                 buttonEliminar.textContent = 'Eliminar'
 
-                buttonModificar.addEventListener('click', () => colocarDatos(producto))
-                buttonEliminar.addEventListener('click', () => eliminar(producto.producto_id))
+                buttonModificar.addEventListener('click', () => colocarDatos(empleado))
+                buttonEliminar.addEventListener('click', () => eliminar(empleado.emp_cod))
 
                 td1.innerText = contador;
-                td2.innerText = producto.producto_nombre
-                td3.innerText = producto.producto_precio
+                td2.innerText = empleado.emp_nom
+                td3.innerText = empleado.pue_suel
                 
                 
                 // ESTRUCTURANDO DOM
@@ -135,16 +135,16 @@ const buscar = async () => {
             fragment.appendChild(tr);
         }
 
-        tablaProductos.tBodies[0].appendChild(fragment)
+        tablaEmpleados.tBodies[0].appendChild(fragment)
     } catch (error) {
         console.log(error);
     }
 }
 
 const colocarDatos = (datos) => {
-    formulario.producto_nombre.value = datos.producto_nombre
-    formulario.producto_precio.value = datos.producto_precio
-    formulario.producto_id.value = datos.producto_id
+    formulario.emp_nom.value = datos.emp_nom
+    formulario.pue_suel.value = datos.pue_suel
+    formulario.emp_cod.value = datos.emp_cod
 
     btnGuardar.disabled = true
     btnGuardar.parentElement.style.display = 'none'
@@ -178,7 +178,7 @@ const modificar = async () => {
     }
 
     const body = new FormData(formulario)
-    const url = '/final_is2_ramos/API/productos/modificar';
+    const url = '/final_is2_ramos/API/empleados/modificar';
     const config = {
         method : 'POST',
         body
@@ -221,8 +221,8 @@ const modificar = async () => {
 const eliminar = async (id) => {
     if(await confirmacion('warning','¿Desea eliminar este registro?')){
         const body = new FormData()
-        body.append('producto_id', id)
-        const url = '/final_is2_ramos/API/productos/eliminar';
+        body.append('emp_cod', id)
+        const url = '/final_is2_ramos/API/empleados/eliminar';
         const config = {
             method : 'POST',
             body
