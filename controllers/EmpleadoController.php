@@ -89,36 +89,58 @@ class EmpleadoController{
             ]);
         }
     }
-    public static function buscarAPI(){
-        $emp_nom = $_GET['emp_nom'];
-        $emp_dpi = $_GET['emp_dpi'];
-        $emp_puesto_cod = $_GET['emp_puesto_cod'];
-        $emp_edad = $_GET['emp_edad'];
-        $emp_sex_cod = $_GET['emp_sex_cod'];
-        $emp_area_cod = $_GET['emp_area_cod'];
-        $sql = "        SELECT * FROM empleados inner join sexos on emp_sex_cod = sex_cod inner join puestos on emp_puesto_cod =  pue_cod inner join areas on emp_area_cod = area_cod where emp_situacion = 1";
-        if($emp_nom != '') {
-            $sql.= " and emp_nom like '%$emp_nom%' ";
+    public static function buscarAPI() {
+        $emp_nom = $_GET['emp_nom'] ?? '';
+        $emp_dpi = $_GET['emp_dpi'] ?? '';
+        $emp_puesto_cod = $_GET['emp_puesto_cod'] ?? '';
+        $emp_edad = $_GET['emp_edad'] ?? '';
+        $emp_sex_cod = $_GET['emp_sex_cod'] ?? '';
+        $emp_area_cod = $_GET['emp_area_cod'] ?? '';
+        
+        $sql = "SELECT * FROM empleados 
+                INNER JOIN sexos ON emp_sex_cod = sex_cod 
+                INNER JOIN puestos ON emp_puesto_cod = pue_cod 
+                INNER JOIN areas ON emp_area_cod = area_cod 
+                WHERE emp_situacion = 1";
+        
+        if (!empty($emp_nom)) {
+            $sql .= " AND emp_nom LIKE '%$emp_nom%'";
         }
-        if($emp_dpi != '') {
-            $sql.= " and emp_dpi like '%$emp_dpi%' ";
+    
+        if (!empty($emp_dpi)) {
+            $sql .= " AND emp_dpi LIKE '%$emp_dpi%'";
         }
-        if($emp_puesto_cod != '') {
-            $sql.= " and emp_puesto_cod like '%$emp_puesto_cod%' ";
+    
+        if (!empty($emp_puesto_cod)) {
+            $sql .= " AND emp_puesto_cod = '$emp_puesto_cod'";
         }
-        if($emp_edad != '') {
-            $sql.= " and emp_edad ";
+    
+        if (!empty($emp_edad)) {
+            $sql .= " AND emp_edad = '$emp_edad'";
         }
-        if($emp_sex_cod != '') {
-            $sql.= " and emp_sex_cod like '%$emp_sex_cod%' ";
+    
+        if (!empty($emp_sex_cod)) {
+            $sql .= " AND emp_sex_cod = '$emp_sex_cod'";
         }
-        if($emp_area_cod != '') {
-            $sql.= " and emp_area_cod like '%$emp_area_cod%' ";
+    
+        if (!empty($emp_area_cod)) {
+            $sql .= " AND emp_area_cod = '$emp_area_cod'";
         }        
-        try {            
-            $empleados = Empleado::fetchArray($sql);    
-            echo json_encode($empleados);
+    
+        try {
+            $empleados = Empleado::fetchArray($sql);
+    
+            header('Content-Type: application/json');
+    
+            if (empty($empleados)) {
+                echo json_encode([
+                    'mensaje' => 'No existen datos'
+                ]);
+            } else {
+                echo json_encode($empleados);
+            }
         } catch (Exception $e) {
+            header('Content-Type: application/json');
             echo json_encode([
                 'detalle' => $e->getMessage(),
                 'mensaje' => 'Ocurrió un error',
@@ -126,6 +148,8 @@ class EmpleadoController{
             ]);
         }
     }
+    
+    
     public static function buscarSexos(){
         $sql = "SELECT * FROM sexos where sex_situacion = 1 ";
         try {
