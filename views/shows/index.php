@@ -3,7 +3,7 @@
         <?php foreach ($empleadosPorAreas as $area => $empleados) : ?>
             <h2><?= $area ?></h2>
             <table class="table table-bordered table-hover">
-                <thead class="table-dark">
+                <thead class="table-warning">
                     <tr>
                     <th>No.</th>
                     <th>Nombre</th>
