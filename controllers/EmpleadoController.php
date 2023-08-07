@@ -96,7 +96,7 @@ class EmpleadoController{
         $emp_edad = $_GET['emp_edad'];
         $emp_sex_cod = $_GET['emp_sex_cod'];
         $emp_area_cod = $_GET['emp_area_cod'];
-        $sql = "SELECT * FROM empleados where emp_situacion = 1 ";
+        $sql = "        SELECT * FROM empleados inner join sexos on emp_sex_cod = sex_cod inner join puestos on emp_puesto_cod =  pue_cod inner join areas on emp_area_cod = area_cod where emp_situacion = 1";
         if($emp_nom != '') {
             $sql.= " and emp_nom like '%$emp_nom%' ";
         }

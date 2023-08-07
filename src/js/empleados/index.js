@@ -119,10 +119,10 @@ const buscar = async () => {
                 td1.innerText = contador;
                 td2.innerText = empleado.emp_nom
                 td3.innerText = empleado.emp_dpi
-                td4.innerText = empleado.emp_puesto_cod
+                td4.innerText = empleado.pue_descr
                 td5.innerText = empleado.emp_edad
-                td6.innerText = empleado.emp_sex_cod
-                td7.innerText = empleado.emp_area_cod
+                td6.innerText = empleado.sex_descr
+                td7.innerText = empleado.area_nom
                 
                 
                 // ESTRUCTURANDO DOM
