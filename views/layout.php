@@ -45,6 +45,9 @@
                             <li>
                                 <a class="dropdown-item nav-link text-white " href="/final_is2_ramos/sexos"><i class="ms-lg-0 ms-2 bi bi-plus-circle me-2"></i>Sexos</a>
                             </li>
+                            <li>
+                                <a class="dropdown-item nav-link text-white " href="/final_is2_ramos/shows"><i class="ms-lg-0 ms-2 bi bi-plus-circle me-2"></i>shows</a>
+                            </li>
                         
                     
                         

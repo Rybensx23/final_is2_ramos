@@ -10,8 +10,7 @@ class PuestoController{
     public static function index(Router $router){
         $Puestos = Puesto::all();        
         $router->render('puestos/index', [
-            'puestos' => $puestos,
-        ]);
+                   ]);
 
     }
 

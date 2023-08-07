@@ -10,6 +10,7 @@ module.exports = {
     'js/sexos/index' : './src/js/sexos/index.js',
     'js/areas/index' : './src/js/areas/index.js',
     'js/puestos/index' : './src/js/puestos/index.js',
+    'js/shows/index' : './src/js/shows/index.js',
   },
   output: {
     filename: '[name].js',

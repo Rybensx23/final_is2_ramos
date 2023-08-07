@@ -19,7 +19,7 @@ class Empleado extends ActiveRecord{
     public function __construct($args = [])
     {
         $this->emp_cod = $args['emp_cod'] ?? null;
-        $this->emp_nom = $args['emp_nom'] ?? '';
+        $this->emp_nom = utf8_decode($args['emp_nom']) ?? '';
         $this->emp_dpi = $args['emp_dpi'] ?? '';
         $this->emp_puesto_cod = $args['emp_puesto_cod'] ?? '';
         $this->emp_edad = $args['emp_edad'] ?? '';

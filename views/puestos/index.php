@@ -10,7 +10,7 @@
         </div>
         <div class="row mb-3">
             <div class="col">
-                <label for="pue_suel">Precio del puesto</label>
+                <label for="pue_suel">Sueldo del puesto</label>
                 <input type="number" step="0.01" min="0" name="pue_suel" id="pue_suel" class="form-control">
             </div>
         </div>
@@ -38,7 +38,7 @@
                 <tr>
                     <th>NO. </th>
                     <th>NOMBRE</th>
-                    <th>PRECIO</th>
+                    <th>SUELDO</th>
                     <th>MODIFICAR</th>
                     <th>ELIMINAR</th>
                 </tr>
