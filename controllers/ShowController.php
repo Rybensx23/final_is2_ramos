@@ -14,13 +14,14 @@ class ShowController
 {
     public static function index(Router $router)
     {
-        $empleadosPorAreas = static::EmpleadosPorAreas();        
+        $area_cod = $_GET['area_cod'] ?? null; // Obtener el área de la URL si está presente
+        $empleadosPorAreas = static::EmpleadosPorAreas($area_cod);        
         $router->render('shows/index', [
             'empleadosPorAreas' => $empleadosPorAreas
         ]);
     }
 
-    public static function EmpleadosPorAreas()
+    public static function EmpleadosPorAreas($area_cod = null)
     {
         $sql = "
         SELECT
@@ -41,9 +42,13 @@ class ShowController
             e.emp_situacion = '1' 
         AND p.pue_situacion = '1' 
         AND a.area_situacion = '1'
-        AND s.sex_situacion = '1'
-        order by area_nombre;
-    ";
+        AND s.sex_situacion = '1'";
+
+        if ($area_cod !== null) {
+            $sql .= " AND e.emp_area_cod = '$area_cod'";
+        }
+
+        $sql .= " ORDER BY area_nombre";
 
         try {           
             $empleadosPorAreas = Empleado::fetchArray($sql);           
